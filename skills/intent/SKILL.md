@@ -31,6 +31,15 @@ question whose answer is already implied by what was given. If something is genu
 undecided, leave it under **Open questions** rather than inventing an answer to look
 complete.
 
+*Executive mode* (this project's `.claude/forge.md` declares Autonomy: `executive`): ask
+only the questions that hit the escalation contract — a one-way door, a user-visible scope
+change, a configured security-sensitive area, or a genuine 50/50 you can't recommend your
+way out of. Everything else, answer yourself with your best-supported recommendation and
+fold it straight into the relevant section (Proposed outcome, Affected users and systems,
+Constraints) as ordinary prose — Intent's shape doesn't grow a new section for this. When
+you report the finished `intent.md` back, say what you assumed and why so the user can veto
+before Spec starts.
+
 **Mode B — Evidence-based (maintenance scan).** No one is present; you were handed log
 excerpts, error reports, an alert, or an incident ID instead of a conversation. Infer
 **Problem** and **Affected users and systems** from that evidence and **cite it inline** (log

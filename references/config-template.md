@@ -61,3 +61,21 @@ imperative line per rule, no rationale, no grouping:
 
 - <domains in this codebase that must trigger `/security-review` rather than the
   implementer's normal feedback loop, e.g. billing, PII exports>
+
+## Autonomy
+
+<!-- Default when absent: `ask` — every stage stops for the user's explicit approval before
+     advancing, exactly `loop`'s built-in behavior. -->
+
+- Mode: <ask | executive>
+- Executive contract (applies only when mode is `executive`): `loop` and the stage skills
+  make and RECORD routine calls themselves instead of asking — an Intent question gets its
+  best-supported answer folded straight into the relevant section, a Spec gap gets decided
+  the same way in Summary/Requirements/Design — and each stage's report to the user says
+  what was assumed and why, so the user can veto before the next stage starts instead of
+  before this one. It still stops and asks: a one-way door (schema, public API, shared write
+  path, data migration), a change to user-visible scope, anything named under
+  Security-sensitive areas above, and a genuine 50/50 it cannot form a recommendation for.
+  Plan always stops regardless of mode — Plan Mode's own acceptance is the actual control
+  there, and no config setting skips a harness-level gate.
+- Extra escalations: <project-specific decisions that must always go to the user, if any>

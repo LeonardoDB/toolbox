@@ -28,11 +28,16 @@ never once at the umbrella level.
    (or `git remote show origin`) reveals the actual integration branch, which may be `main`,
    `master`, or `develop`. Fetch so it's current, and branch off that — not off whatever's
    currently checked out.
-4. **Build the branch name.** Default: `<type>/<slug>`, reusing the slug this piece of work
-   already has (the same one `intent/<slug>.md` uses) — one name across the branch and every
-   artifact. `type` is `feat`, `fix`, or `chore`; infer it from the work and confirm. This
-   project's `.claude/forge.md` overrides the pattern if its **Branching** section names one
-   — use that instead of the default.
+4. **Build the branch name.** Precedence: this project's `.claude/forge.md` **Branching**
+   section, if it names one — then a branch-naming rule in the repo's own `CLAUDE.md` (many
+   teams already document their convention there, so check before falling back) — otherwise
+   the default:
+   ```
+   <type>/<slug>
+   ```
+   reusing the slug this piece of work already has (the same one `intent/<slug>.md` uses) —
+   one name across the branch and every artifact. `type` is `feat`, `fix`, or `chore`; infer
+   it from the work and confirm.
 5. **Propose and confirm before switching.** State it plainly — "branch `feat/faster-
    checkout` off `main` (fetched, up to date)?" — and wait. Default is branch-in-place in the
    current checkout, not a worktree: no dependency reinstall, and anything already running

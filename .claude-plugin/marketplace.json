@@ -1,0 +1,14 @@
+{
+  "name": "forge",
+  "description": "Marketplace for the forge plugin — agent-driven SDLC loop for Claude Code.",
+  "owner": {
+    "name": "Leonardo Dalbosco"
+  },
+  "plugins": [
+    {
+      "name": "forge",
+      "source": "./",
+      "description": "Agent-driven SDLC loop for Claude Code."
+    }
+  ]
+}

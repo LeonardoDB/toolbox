@@ -5,9 +5,13 @@ description: Orchestrate forge's artifact chain end to end — Intent, Spec, Pla
 
 # Loop
 
-You drive forge's artifact chain from a single entry point, stage by stage, stopping for the
-user's explicit approval before each advance. You don't approve your own work, and you don't
-mark anything `Status: approved` or commit anything without them saying so in that moment.
+You drive forge's artifact chain from a single entry point, stage by stage. By default
+(config Autonomy: `ask`) you stop for the user's explicit approval before each advance — you
+don't approve your own work, and you don't mark anything `Status: approved` or commit
+anything without them saying so in that moment. When the config sets Autonomy: `executive`,
+Intent and Spec advance on their own — you decide the routine calls, record them, and report
+them for the user to veto after the fact, per each stage's own executive-mode rule — while
+Plan and everything past it stop exactly as before. See **Project config** below.
 
 Forge's per-stage skills (`intent`, `spec`, `plan`) already contain the actual instructions
 for each stage — this skill sequences them, it doesn't duplicate them. Read each one in full
@@ -19,7 +23,8 @@ it reaches each one, the same way running that stage by hand would.
 **Project config:** this project's `.claude/forge.md`, if present, overrides the defaults
 below — read it first (template: `${CLAUDE_PLUGIN_ROOT}/references/config-template.md`).
 Sub-agents this skill dispatches don't read it themselves; paste the relevant section into
-their brief.
+their brief. Its **Autonomy** section (`ask`, the default, or `executive`) governs every
+stage gate below — read it once, up front, rather than re-checking at each stage.
 
 **Who this is for:** spans roles as the stages change hands — product owner for Intent and
 Spec, engineer for Plan — same as running each stage separately. Whoever is actually in the
@@ -44,13 +49,27 @@ start at Intent. Left blank, resume (see step 1).
    full and follow it: the right branch, off a clean base, confirmed with the user before
    switching, named from the slug in step 1 so the whole trail lands together.
 3. Run Intent (`skills/intent/SKILL.md`, in full, using step 1's slug) unless this slug
-   already has an approved `intent.md`. Once written, stop: show it to the user and ask them
-   to review it. Only on their explicit approval do you set `Status: approved` and commit —
-   a requested edit or a change of mind isn't a failure, revise and ask again.
+   already has an approved `intent.md`. Once written, gate on the config's Autonomy mode:
+   - **`ask`** (default): stop, show it to the user, and ask them to review it. Only on
+     their explicit approval do you set `Status: approved` and commit — a requested edit or
+     a change of mind isn't a failure, revise and ask again.
+   - **`executive`**: Intent's own executive-mode rule already answered the routine
+     questions and folded them into the artifact as you wrote it. Set `Status: approved` and
+     commit yourself, then report what you assumed and why so the user can veto before Spec
+     starts. Skip straight to step 4 — don't wait for a reply. The one exception: if writing
+     Intent hit the config's escalation contract (a one-way door, a user-visible scope
+     change, a named security-sensitive area, a genuine 50/50), stop and ask on that point
+     alone, exactly as in `ask` mode, before moving on.
 4. Once `intent.md` is approved and committed, run Spec (`skills/spec/SKILL.md`, in full) the
-   same way — write `spec.md`, stop, ask, advance only on explicit approval.
-5. Once `spec.md` is approved and committed, run Plan (`skills/plan/SKILL.md`, in full) the
-   same way — write `plan.md`, stop, ask, advance only on explicit approval.
+   same way — write `spec.md`, then apply the same gate: `ask` stops and waits for approval;
+   `executive` decides the genuinely-unclear points itself per Spec's own executive-mode
+   rule, records the decision inline, sets `Status: approved`, commits, reports what it
+   decided, and proceeds straight to step 5 unless an escalation fired.
+5. Once `spec.md` is approved and committed, run Plan (`skills/plan/SKILL.md`, in full),
+   unchanged by Autonomy mode: **Plan always stops for the user, in both modes.** Plan
+   never asks a mid-process question the way Intent and Spec do — its only user interaction
+   is Plan Mode's own acceptance (Plan's step 1), and that harness-level gate is the real
+   control the playbook relies on here, not something a config setting can skip.
 6. Once `plan.md` is approved, hand implementation off to a **fresh sub-agent** — give it only
    the path to `plan.md`, not this conversation, per the playbook's own rule that a later
    stage runs with no memory of the session that produced its input. If this project's

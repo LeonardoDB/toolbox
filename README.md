@@ -25,7 +25,7 @@ at once with `/forge:run`.
 ## Install
 
 ```
-/plugin marketplace add <github-user>/forge
+/plugin marketplace add LeonardoDB/toolbox
 /plugin install forge@forge
 ```
 

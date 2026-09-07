@@ -38,7 +38,13 @@ ask which; none → tell the user to run `/forge:intent` first and stop.
    location: a `knowledge-base/` folder at the project root; this project's `.claude/forge.md`
    overrides the path (and names a query skill to prefer) if its **Knowledge base** section
    says so.
-4. Ask the operator directly for anything still genuinely unclear; don't guess.
+4. Ask the operator directly for anything still genuinely unclear; don't guess. **Executive
+   mode** (this project's `.claude/forge.md` declares Autonomy: `executive`): decide it
+   yourself with your best-supported answer and note it inline where it belongs (Summary,
+   Requirements, or Design) instead of asking — unless it hits the escalation contract (a
+   one-way door, a user-visible scope change, a configured security-sensitive area, or a
+   genuine 50/50), which always gets asked regardless of mode. Say what you decided and why
+   when you report `spec.md` back, so the user can veto before Plan starts.
 5. Account for every one of the source intent.md's Open questions — each resolved or
    explicitly carried forward.
 6. Fill the template from `references/template.md` in full. Record every source that actually
