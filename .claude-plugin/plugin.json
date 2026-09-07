@@ -1,0 +1,16 @@
+{
+  "name": "forge",
+  "description": "Agent-driven SDLC loop for Claude Code.",
+  "version": "0.3.2",
+  "author": {
+    "name": "Leonardo Dalbosco",
+    "email": "leodalbosco@hotmail.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "sdlc",
+    "intent-driven-development",
+    "feature-development",
+    "agent-workflow"
+  ]
+}
