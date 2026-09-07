@@ -38,9 +38,9 @@ excerpt, `file:line`, error rate) so whoever reads this later can verify the cla
 trusting it blind. Set `Author: claude (maintain scan)`. Leave **Proposed outcome** and
 **Constraints** under Open questions if the evidence doesn't actually support a fix direction —
 a plausible guess dressed as a decision is worse than an honest unknown here. (Forge doesn't
-yet run this mode on a schedule — see the plugin README's roadmap. Today this mode exists so
-the skill behaves correctly whenever that scheduling is wired up, and so it can be exercised
-by hand by pasting in log/incident text.)
+yet run this mode on a schedule. Today this mode exists so the skill behaves correctly
+whenever that scheduling is wired up, and so it can be exercised by hand by pasting in
+log/incident text.)
 
 **Mode C — Tracker-sourced (issue tracker URL).** Read
 `${CLAUDE_PLUGIN_ROOT}/references/trackers.md` before doing anything else and follow it in
@@ -48,8 +48,8 @@ full for *how to fetch* the issue. Once you have it: treat its description as yo
 person's problem statement in Mode A (ask clarifying questions only for gaps it doesn't
 answer), treat the comment thread as supporting evidence you cite the way Mode B cites logs,
 and add a `Source:` line to the written intent.md pointing at the original issue — forge's
-"linkage minimum" between repo and tracker (see the README's "Artifacts" section), not an
-attempt to keep the two in sync afterward.
+"linkage minimum" between repo and tracker: the repo copy is what forge works from, the
+tracker is left as-is, and the two aren't kept in sync afterward.
 
 ## What to do
 

@@ -1,8 +1,8 @@
 # Issue tracker adapters
 
 Shared fetch reference: how to pull a GitLab or Linear issue's full content, for any skill in
-this plugin that needs it — used today by Intent's Mode C, meant to be reused as-is once the
-v0.4 PR/MR stage exists. Covers *fetching only*: what a skill does with the pulled issue is
+this plugin that needs it — used today by Intent's Mode C, meant to be reused as-is once a
+future PR/MR stage exists. Covers *fetching only*: what a skill does with the pulled issue is
 that skill's own instructions, not this file's — keep it that way when extending this file.
 
 Which adapter to use is decided by the URL's host, not by asking the user. If the host

@@ -93,17 +93,16 @@ start at Intent. Left blank, resume (see step 1).
    assumptions that produced it.
 8. Report the combined result to the user and stop. The changes sit uncommitted in the
    working tree for them to review and commit themselves. There's no PR/review stage built
-   yet for this to hand off to (see the README's roadmap) — that's still a person's call to
-   make.
-9. Triage the ledger (`references/ledger.md`) if it has any entries. This closes the run —
-   promote what's worth keeping, drop the rest.
+   yet for this to hand off to — that's still a person's call to make.
+9. Triage the ledger (`${CLAUDE_PLUGIN_ROOT}/references/ledger.md`) if it has any entries.
+   This closes the run — promote what's worth keeping, drop the rest.
 
 ## The ledger
 
 Any step above — Intent, Spec, Plan, the implementer, the verifier — can append a line to
-`references/ledger.md`'s file (`intent/ledger.md`, by default) the moment something worth
-keeping surfaces: a gotcha, a convention, a decision. Don't wait for step 9 to write it down;
-that step only triages what already got appended.
+the ledger (per `${CLAUDE_PLUGIN_ROOT}/references/ledger.md`, `intent/ledger.md` by default)
+the moment something worth keeping surfaces: a gotcha, a convention, a decision. Don't wait
+for step 9 to write it down; that step only triages what already got appended.
 
 ## What this doesn't do yet
 

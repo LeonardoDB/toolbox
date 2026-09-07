@@ -29,8 +29,6 @@ at once with `/forge:run`.
 /plugin install forge@forge
 ```
 
-Needs a `.claude-plugin/marketplace.json` once the repo is public.
-
 ## License
 
 MIT — see [LICENSE](LICENSE).

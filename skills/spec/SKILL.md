@@ -46,6 +46,6 @@ ask which; none → tell the user to run `/forge:intent` first and stop.
    applied:`.
 7. Derive the same kebab-case slug the source intent.md uses and write the file to
    `intent/<slug>.spec.md`, alongside it — never forge's own plugin directory.
-8. Stop. Do not proceed to implementation, and do not write a `plan.md` — that's Build's own
-   artifact (Claude Code's Plan Mode, triggered by an accepted spec, not this skill's job).
-   Tell the user plainly that Build isn't built yet (see the README's roadmap).
+8. Stop. Do not proceed to implementation, and do not write a `plan.md` — that's Plan's own
+   artifact (Claude Code's Plan Mode, triggered by an accepted spec, not this skill's job:
+   `/forge:plan`, or `/forge:run` to drive the whole chain).
